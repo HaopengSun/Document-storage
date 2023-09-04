@@ -21,6 +21,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/documents', [DocumentsController::class, 'index'])->name('documents.index');
+  Route::get('/create-folder', [DocumentsController::class, 'createFolder'])->name('folder.create');
 });
 
 Route::middleware('auth')->group(function () {
