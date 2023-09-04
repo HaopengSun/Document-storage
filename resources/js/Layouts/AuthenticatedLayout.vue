@@ -5,6 +5,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import GlobalSearch from '@/Components/GlobalSearch.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
@@ -39,6 +40,11 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('documents.index')" :active="route().current('documents.index')">
                                     Documents
                                 </NavLink>
+                            </div>
+
+                            <!-- Search form -->
+                            <div class="sm:ml-10">
+                              <GlobalSearch />
                             </div>
                         </div>
 
