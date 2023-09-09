@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRootFolderRequest;
-use Illuminate\Http\Request;
+use App\Models\File;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreRootFolderRequest;
 
 class DocumentsController extends Controller
 {
