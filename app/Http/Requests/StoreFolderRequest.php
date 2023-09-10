@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\File;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 

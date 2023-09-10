@@ -23,7 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/documents', [DocumentsController::class, 'index'])->name('documents.index');
   Route::post('/create-root-folder', [DocumentsController::class, 'createRootFolder'])->name('folder.create.root');
   Route::get('/get-root-folder', [DocumentsController::class, 'returnRootFolderOfUser'])->name('folder.get.root');
-  Route::get('/create-folder', [DocumentsController::class, 'createFolder'])->name('folder.create');
+  Route::post('/create-folder', [DocumentsController::class, 'createFolder'])->name('folder.create');
 });
 
 Route::middleware('auth')->group(function () {
