@@ -16,7 +16,8 @@ class DocumentsController extends Controller
      */
     public function index(Request $request): Response
     {
-        return Inertia::render('Documents/Documents');
+        $files = $this->getUserFiles();
+        return Inertia::render('Documents/Documents', compact('files'));
     }
 
     /**
@@ -78,5 +79,19 @@ class DocumentsController extends Controller
     private function getRoot()
     {
         return File::query()->whereIsRoot()->where('created_by', Auth::id())->firstOrFail();
+    }
+
+    /**
+     * Return folders and files based on the parent/root folder
+     */
+    private function getUserFiles()
+    {
+        $folder = $this->getRoot();
+        return File::query()
+          ->where('parent_id', $folder->id)
+          ->where('created_by', Auth::id())
+          ->orderBy('is_folder', 'desc')
+          ->orderBy('created_at', 'desc')
+          ->paginate(10);
     }
 }

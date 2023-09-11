@@ -65,13 +65,13 @@ function onShow() {
 
 function createFolder() {
   form.parent_id = page.props?.folder?.id
-    form.post(route('folder.create'), {
-        preserveScroll: true,
-        onSuccess: () => {
-            closeModal()
-            form.reset();
-        },
-        onError: () => folderNameInput.value.focus()
-    })
+  form.post(route('folder.create'), {
+      preserveScroll: true,
+      onSuccess: () => {
+          closeModal()
+          form.reset();
+      },
+      onError: () => folderNameInput.value.focus()
+  })
 }
 </script>
