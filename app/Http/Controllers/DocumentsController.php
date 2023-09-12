@@ -6,6 +6,7 @@ use App\Models\File;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
+use App\Http\Resources\FileResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreFolderRequest;
 
@@ -17,6 +18,7 @@ class DocumentsController extends Controller
     public function index(Request $request): Response
     {
         $files = $this->getUserFiles();
+        $files = FileResource::collection($files);
         return Inertia::render('Documents/Documents', compact('files'));
     }
 

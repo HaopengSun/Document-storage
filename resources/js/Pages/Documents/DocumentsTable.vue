@@ -33,13 +33,13 @@
                 <Checkbox />
             </td>
             <td class="px-6 py-4 max-w-[40px] text-sm font-medium text-gray-900 text-yellow-500">
-              
+
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex items-center">
                 {{ file.name }}
             </td>
-            <td v-if="search" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {{ file.path }}
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                {{ file.owner }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {{ file.created_by }}
@@ -54,7 +54,6 @@
         </tbody>
       </table>
     </div>
-  <!-- <pre>{{files}}</pre> -->
 </template>
 
 <script setup>
