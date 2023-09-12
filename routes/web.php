@@ -20,7 +20,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-  Route::get('/documents', [DocumentsController::class, 'index'])->name('documents.index');
+  Route::get('/documents/{folder?}', [DocumentsController::class, 'index'])
+    ->where('folder', '(.*)')
+    ->name('documents.index');
   Route::post('/create-root-folder', [DocumentsController::class, 'createRootFolder'])->name('folder.create.root');
   Route::get('/get-root-folder', [DocumentsController::class, 'returnRootFolderOfUser'])->name('folder.get.root');
   Route::post('/create-folder', [DocumentsController::class, 'createFolder'])->name('folder.create');

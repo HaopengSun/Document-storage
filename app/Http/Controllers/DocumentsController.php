@@ -15,9 +15,9 @@ class DocumentsController extends Controller
     /**
      * Display documentation page
      */
-    public function index(Request $request): Response
+    public function index(Request $request, string $folder = null): Response
     {
-        $files = $this->getUserFiles();
+        $files = $this->getUserFiles($folder);
         $files = FileResource::collection($files);
         return Inertia::render('Documents/Documents', compact('files'));
     }
@@ -86,9 +86,18 @@ class DocumentsController extends Controller
     /**
      * Return folders and files based on the parent/root folder
      */
-    private function getUserFiles()
+    private function getUserFiles($folder)
     {
-        $folder = $this->getRoot();
+        if ($folder) {
+          $folder = File::query()
+              ->where('created_by', Auth::id())
+              ->where('path', $folder)
+              ->firstOrFail();
+        }
+        else {
+            $folder = $this->getRoot();
+        }
+
         return File::query()
           ->where('parent_id', $folder->id)
           ->where('created_by', Auth::id())

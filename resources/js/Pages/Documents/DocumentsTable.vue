@@ -27,7 +27,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="file of files.data" key="files.id"
+        <tr v-for="file of files.data" key="files.id" @dblclick="openFolder(file)"
           class="border-b transition duration-300 ease-in-out hover:bg-blue-100 cursor-pointer">
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 w-[30px] max-w-[30px] pr-0">
                 <Checkbox />
@@ -40,9 +40,6 @@
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {{ file.owner }}
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {{ file.created_by }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {{ file.updated_at }}
@@ -58,10 +55,20 @@
 
 <script setup>
 import Checkbox from "@/Components/Checkbox.vue";
+import { router } from "@inertiajs/vue3";
 
 // Props & Emit
 const { files } = defineProps({
-    files: Object
+  files: Object
 });
+
+// Methods
+function openFolder(file) {
+  console.log(file);
+  if (!file.is_folder) {
+      return;
+  }
+  router.visit(route('documents.index', {folder: file.path}))
+}
 
 </script>
